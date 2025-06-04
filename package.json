@@ -7,8 +7,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@applitools/eyes-playwright": "^1.37.2",
     "@cucumber/cucumber": "^11.3.0",
     "@playwright/test": "^1.52.0",
+    "@types/jquery": "^3.5.32",
     "@types/node": "^22.15.29",
     "playwright": "^1.52.0",
     "playwright-bdd": "^8.2.1",
