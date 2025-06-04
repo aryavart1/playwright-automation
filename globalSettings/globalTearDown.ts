@@ -1,4 +1,4 @@
-import { globalTestData } from '@qecoe/playwright_automation';
+import { globalTestData } from './globalTestData'
 
 /** 
 * Purpose: Global TearDown method- Which helps to setup the after test execution

@@ -21,7 +21,7 @@ import {
   // AppliToolUtils,
   // DateFormatUtils,
 } from '../../utilities'
-import { globalTestData } from '../../globalSettings';
+import { globalTestData } from '../../globalSettings'
 import FrameWorkUsageListener from '../../logger/FwUsageListenerPageLevel';
 
 export abstract class BasePage {

@@ -22,7 +22,8 @@
   },
   "dependencies": {
     "playwright-core": "^1.51.1",
-    "undici-types": "^6.20.0"
+    "undici-types": "^6.20.0",
+    "winston": "^3.17.0"
   },
   "description": ""
 }
