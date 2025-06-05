@@ -67,6 +67,6 @@ export abstract class BasePage {
     // this.pdfUtils = PDFUtils;
     // this.csvUtils = CsvUtils;
     // this.excelUtils = ExcelUtils;
-    this.frameWorkUsageListener = new FrameWorkUsageListener(page);
+    this.frameWorkUsageListener = new FrameWorkUsageListener();
   }
 }

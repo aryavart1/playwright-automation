@@ -2,6 +2,8 @@ import {Page, test, expect} from "@playwright/test";
 // import { BasePage } from "@qecoe/playwright_automation";
 import {BasePage} from "./BasePage"
 import LoginContent from "../contents/LoginPageContents";
+import { getEnvVar } from '../utilities/env';
+
 export class LoginPage extends BasePage{
 
     constructor(page: Page) {
@@ -14,7 +16,7 @@ export class LoginPage extends BasePage{
     invalidCredentialsErrorMessage = this.page.getByText('Invalid credenfials');
 
     public async verifyLoginPage() {
-      await this.page.goto(process.env.UI_URL);
+      await this.page.goto(getEnvVar('UI_URL'));
       await expect(this.page).toHaveTitle("OrangeHRM");
     }
 
@@ -39,10 +41,10 @@ export class LoginPage extends BasePage{
       });
     }
 
-    public async AxeScan(){
-      await test.step(`Accessibility scan on Login Page` , async ()=>{
-        await this.axeUtils.checkAccessibilityViolationsWithTags([], "Login Page", "Orange HRM Project");
-      });
-    }
+//     public async AxeScan(){
+//       await test.step(`Accessibility scan on Login Page` , async ()=>{
+//         await this.axeUtils.checkAccessibilityViolationsWithTags([], "Login Page", "Orange HRM Project");
+//       });
+//     }
 }
 

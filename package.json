@@ -21,6 +21,7 @@
     "test": "tests"
   },
   "dependencies": {
+    "dotenv": "^16.5.0",
     "playwright-core": "^1.51.1",
     "undici-types": "^6.20.0",
     "winston": "^3.17.0"

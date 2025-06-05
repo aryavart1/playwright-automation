@@ -1,5 +1,5 @@
 import { Page, expect } from "@playwright/test";
-import { BasePage } from "@qecoe/playwright_automation";
+import {BasePage} from "./BasePage"
 
 export class DashboardPage extends BasePage{
 

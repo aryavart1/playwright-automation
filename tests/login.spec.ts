@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-
+import { getEnvVar } from '../utilities/env';
 
 
 
@@ -25,10 +25,10 @@ import { test, expect } from '@playwright/test';
 
 test("Page_OrangeHRM application validate login", async({page}) =>
 { 
-  await page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+  await page.goto(getEnvVar('UI_URL'))
   let title = await(page.title())
   console.log(title)
-  console.log("helloooooooooooweoeefef")
+  console.log("test")
   await expect(page).toHaveTitle("OrangeHRM")
 
 

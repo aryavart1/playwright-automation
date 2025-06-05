@@ -9,3 +9,5 @@
 -> Install Winston (Integrated with Playwright to enhance logging capabilities in test automation): 
    npm install winston
 
+-> Install Playwright-bdd package 
+   npm install playwright-bdd
