@@ -4,24 +4,24 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const testDir = defineBddConfig({
-    paths: ['features/ ** / *. feature'],
-    require: ['step_definitions/ ** / *. {ts,js}']
+    paths: ['features/**/*.feature'],
+    require: ['step_definitions/**/*.{ts,js}']
     // uncomment and install 'ts-node' if using Typescript
     // requireModule: ['ts-node/register'],
 });
 
 const config = {
-    testDir: '.features-gen',
+    //testDir: '.features-gen',
+    testDir: './tests',
     /* Maximum time one test can run for. */
     timeout: 30 * 1000,
     expect: {
         timeout: 5000
-    };
-
+    },
     /* Run tests in files in parallel */
-    fullyParallel: true,
+    fullyParallel: false,
     /* Fail the build on CI if you accidentally left test.only in the source code. */
-    forbidOnly: !! process.env.CI,
+    forbidOnly: !!process.env.CI,
     /* Retry on CI only */
     // retries: process.env.CI ? 2 : 0,
     /* Opt out of parallel tests on CI. */
@@ -31,21 +31,16 @@ const config = {
     globalTimeout: process.env.CI ? 60 * 60 * 1000 : undefined,
     /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
     use: {
-        /* Maximum time each action such as 'click()' can take. Defaults to 0 (no limit). */
-        actionTimeout: 0
-    },
-
-    /* Configure projects for major browsers */
-
-    use: {
+        /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
+        actionTimeout: 0,
         /* Base URL to use in actions like `await page.goto('/')`. */
         // baseURL: 'http://127.0.0.1:3000',
 
         /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
         trace: 'on-first-retry',
-      },
+    },
 
-      /* Configure projects for major browsers */
+    /* Configure projects for major browsers */
       projects: [
         {
           name: 'chromium',
@@ -79,14 +74,14 @@ const config = {
 
         /* Test against branded browsers. */
         // {
-      //   name: 'Microsoft Edge',
-    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
-    // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-    // },
-  ],
+        //   name: 'Microsoft Edge',
+        //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
+        // },
+        // {
+        //   name: 'Google Chrome',
+        //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
+        // },
+      ],
 
   /* Run your local dev server before starting the tests */
   // webServer: {
@@ -94,5 +89,5 @@ const config = {
   //   url: 'http://127.0.0.1:3000',
   //   reuseExistingServer: !process.env.CI,
   // },
-  }
-}
+};
+export default config;
