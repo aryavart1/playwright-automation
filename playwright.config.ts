@@ -1,93 +1,42 @@
-import { devices } from '@playwright/test';
+import { defineConfig, devices } from '@playwright/test';
 import { defineBddConfig } from 'playwright-bdd';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const testDir = defineBddConfig({
-    paths: ['features/**/*.feature'],
-    require: ['step_definitions/**/*.{ts,js}']
-    // uncomment and install 'ts-node' if using Typescript
-    // requireModule: ['ts-node/register'],
+// BDD-specific configuration
+const bddConfig = defineBddConfig({
+  paths: ['features/**/*.feature'],
+  require: ['step-definitions/**/*.{ts,js}'], 
+  requireModule: ['ts-node/register'], // Needed for TypeScript support
 });
 
-const config = {
-    //testDir: '.features-gen',
-    testDir: './tests',
-    /* Maximum time one test can run for. */
-    timeout: 30 * 1000,
-    expect: {
-        timeout: 5000
+export default defineConfig({
+  //...bddConfig, // Spread BDD config here
+
+  // This testDir will be overridden by bddConfig.testDir
+  // But leaving it here doesn't hurt in case you use @playwright/test elsewhere
+  testDir: './tests',
+
+  fullyParallel: false,
+  forbidOnly: !!process.env.CI,
+  retries: process.env.CI ? 2 : 0,
+  workers: process.env.CI ? 1 : undefined,
+  reporter: 'html',
+
+  use: {
+    trace: 'on-first-retry',
+  },
+
+  projects: [
+    {
+      name: 'chromium',
+      use: {
+        ...devices['Desktop Chrome'],
+        trace: 'off',
+        headless: false,
+        screenshot: 'on',
+        video: 'on',
+      },
     },
-    /* Run tests in files in parallel */
-    fullyParallel: false,
-    /* Fail the build on CI if you accidentally left test.only in the source code. */
-    forbidOnly: !!process.env.CI,
-    /* Retry on CI only */
-    // retries: process.env.CI ? 2 : 0,
-    /* Opt out of parallel tests on CI. */
-    workers: process.env.CI ? 1 : undefined,
-    /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-    reporter: 'html',
-    globalTimeout: process.env.CI ? 60 * 60 * 1000 : undefined,
-    /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-    use: {
-        /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
-        actionTimeout: 0,
-        /* Base URL to use in actions like `await page.goto('/')`. */
-        // baseURL: 'http://127.0.0.1:3000',
-
-        /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-        trace: 'on-first-retry',
-    },
-
-    /* Configure projects for major browsers */
-      projects: [
-        {
-          name: 'chromium',
-          use: { ...devices['Desktop Chrome'],
-          trace: 'off',
-          headless: false,
-          screenshot: 'on',
-          video: 'on',
-          },
-        },
-
-        // {
-        //   name: 'firefox',
-        //   use: { ...devices['Desktop Firefox'] },
-        // },
-
-        // {
-        //   name: 'webkit',
-        //   use: { ...devices['Desktop Safari'] },
-        // },
-
-        /* Test against mobile viewports. */
-        // {
-        //   name: 'Mobile Chrome',
-        //   use: { ...devices['Pixel 5'] },
-        // },
-        // {
-        //   name: 'Mobile Safari',
-        //   use: { ...devices['iPhone 12'] },
-        // },
-
-        /* Test against branded browsers. */
-        // {
-        //   name: 'Microsoft Edge',
-        //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
-        // },
-        // {
-        //   name: 'Google Chrome',
-        //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-        // },
-      ],
-
-  /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   url: 'http://127.0.0.1:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
-};
-export default config;
+  ],
+});
