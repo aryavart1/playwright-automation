@@ -6,8 +6,8 @@ dotenv.config();
 // BDD-specific configuration
 const bddConfig = defineBddConfig({
   paths: ['features/**/*.feature'],
-  require: ['step-definitions/**/*.{ts,js}'], 
-  requireModule: ['ts-node/register'], // Needed for TypeScript support
+  require: ['step_definitions/**/*.{ts,js}'], 
+  // requireModule: ['ts-node/register'], // Needed for TypeScript support
 });
 
 export default defineConfig({
