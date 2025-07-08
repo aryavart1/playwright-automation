@@ -1,6 +1,6 @@
 import {Given, When, Then, setDefaultTimeout} from '@cucumber/cucumber';
 import { CustomWorld } from './customWorld';
-import LoginData from "../contents/LoginPageData";
+import LoginData from "../../contents/LoginPageData";
 setDefaultTimeout(60 * 1000 * 4);
 
 Given('I am on the login page', async function (this: CustomWorld) {

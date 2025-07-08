@@ -1,4 +1,4 @@
-/** Generated from: features\Login.feature */
+/** Generated from: src\features\Login.feature */
 import { test } from "playwright-bdd";
 
 test.describe("Login", () => {
@@ -15,7 +15,7 @@ test.describe("Login", () => {
 test.use({
   $test: ({}, use) => use(test),
   $testMetaMap: ({}, use) => use(testMetaMap),
-  $uri: ({}, use) => use("features\\Login.feature"),
+  $uri: ({}, use) => use("src\\features\\Login.feature"),
   $bddWorldFixtures: ({ page, context, browser, browserName, request }, use) => use({ page, context, browser, browserName, request }),
 });
 
