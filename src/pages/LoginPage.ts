@@ -1,8 +1,7 @@
 import {Page, test, expect} from "@playwright/test";
 // import { BasePage } from "@qecoe/playwright_automation";
 import { BasePage } from '../pages/BasePage';
-import LoginData from "../contents/LoginPageData";
-import { getEnvVar } from '../utilities/env';
+
 
 export class LoginPage extends BasePage{
     

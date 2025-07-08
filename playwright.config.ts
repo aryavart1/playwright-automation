@@ -19,6 +19,8 @@ export default defineConfig({
   // But leaving it here doesn't hurt in case you use @playwright/test elsewhere
   testDir: '.features-gen',
 
+  // testDir: './tests',
+
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
