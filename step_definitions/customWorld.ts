@@ -4,9 +4,15 @@ import { BddWorld, BddWorldOptions } from 'playwright-bdd';  // npm install play
 import { LoginPage } from '../pages/LoginPage';
 import { DashboardPage } from '../pages/Dashboard.page';
 
+import { Pages } from '../pages/pages'
+
 export class CustomWorld extends BddWorld {
+    
+    readonly pages: Pages;
+
     constructor(public options: BddWorldOptions) {
         super(options);
+        this.pages = new Pages(this.page);
     }
     
     async init() {
@@ -27,3 +33,5 @@ export class CustomWorld extends BddWorld {
       return new DashboardPage(this.page);
     } 
 }
+
+setWorldConstructor(CustomWorld);

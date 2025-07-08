@@ -1,23 +1,18 @@
 import {Given, When, Then, setDefaultTimeout} from '@cucumber/cucumber';
 import { CustomWorld } from './customWorld';
+import LoginData from "../contents/LoginPageData";
 setDefaultTimeout(60 * 1000 * 4);
 
-Given('user launches the Orange HRM application site', async function (this: CustomWorld) {
-    await this.loginPage.verifyLoginPage();
+Given('I am on the login page', async function (this: CustomWorld) {
+    await this.loginPage.goToLoginPage();
 });
 
-When('user provides {string} and {string} to login into application', async function (this: CustomWorld, UserName: string, Password: string) {
-await this.loginPage.login(UserName, Password);
+When('user provides username and password for {string} to login into application', async function (this: CustomWorld, userKey: string) {
+    const normalizedUserKey = userKey.toUpperCase();
+    const user = LoginData[normalizedUserKey as keyof typeof LoginData];
+    if (!user) {
+        throw new Error(`User data for key "${userKey}" not found.`);
+    }
+    await this.loginPage.login(user);
 });
 
-When('user checks accessibility check on the page', async function(this: CustomWorld){
-await this. loginPage.AxeScan();
-});
-
-Then('user click Logout button', async function () {
-console.log("Logout user ..! ")
-});
-
-When('user should able to navigate to PIM page', async function (this: CustomWorld) {
-await this.dashboardPage.navigateToPimMenu();
-});

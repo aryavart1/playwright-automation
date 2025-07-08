@@ -15,7 +15,7 @@ export default defineConfig({
 
   // This testDir will be overridden by bddConfig.testDir
   // But leaving it here doesn't hurt in case you use @playwright/test elsewhere
-  testDir: './tests',
+  testDir: '.features-gen',
 
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
