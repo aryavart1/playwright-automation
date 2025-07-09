@@ -6,6 +6,7 @@ const LoginData = {
       PageTitle: "OrangeHRM",
       username: "Admin",
       password: "admin123",
+      storageFile: "SessionCookies/USER1.json",
 
       LoginErrorMessage: "Invalid credentials",
       LoggedInUserName: "Welcome Admin"
